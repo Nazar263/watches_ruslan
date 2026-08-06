@@ -17,10 +17,10 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center"
     >
       {/* === FULLSCREEN VIDEO BACKGROUND === */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video
           autoPlay
           muted
@@ -39,7 +39,7 @@ export default function Hero() {
       {/* === CONTENT === */}
       <motion.div
         style={{ opacity, y }}
-        className="relative z-10 max-w-3xl mx-auto px-6 text-center"
+        className="relative z-10 w-full max-w-5xl mx-auto px-6 text-center"
       >
         {/* Badge */}
         <motion.div
@@ -48,7 +48,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <span className="inline-block text-[0.65rem] sm:text-[0.7rem] tracking-[0.4em] uppercase mb-6 sm:mb-8 border border-white/20 px-5 py-2 rounded-full text-white/70 font-medium backdrop-blur-sm bg-white/5">
-            Aviation Heritage
+              Precision Heritage
           </span>
         </motion.div>
 
@@ -58,7 +58,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <h1 className="font-heading leading-[0.88] mb-5 sm:mb-6">
+          <h1 className="font-heading leading-[1.2] mb-5 sm:mb-6">
             <span
               className="block text-white font-black"
               style={{
@@ -67,7 +67,7 @@ export default function Hero() {
                 textShadow: '0 2px 40px rgba(0,0,0,0.4)',
               }}
             >
-              Ruslan
+              Precision
             </span>
             <span
               className="block font-black"
@@ -80,7 +80,7 @@ export default function Hero() {
                 filter: 'drop-shadow(0 2px 15px rgba(0,0,0,0.3))',
               }}
             >
-              Aviation
+              Timepieces
             </span>
           </h1>
         </motion.div>

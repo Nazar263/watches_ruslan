@@ -215,7 +215,7 @@ export default function About() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="text-text-secondary text-base sm:text-lg leading-relaxed"
               >
-                Ruslan Aviation is a company specializing in the sale of quality wristwatches,
+                Precision Timepieces is a company specializing in the sale of quality wristwatches,
                 combining modern design, reliability, and affordable prices. We offer a carefully
                 curated selection of models for various styles and needs.
               </motion.p>

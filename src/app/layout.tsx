@@ -14,46 +14,46 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = "https://ruslanaviation.com";
+const siteUrl = "https://precisiontimepieces.com";
 
 export const metadata: Metadata = {
-  title: "Ruslan Aviation | Premium Timepieces",
+  title: "Precision Timepieces | Premium Timepieces",
   description:
-    "Curated collection of premium aviation-inspired timepieces. Where Swiss precision meets modern elegance. Browse our selection of Falcon Chronograph, Navigator GMT, Heritage Pilot, and Stealth Chrono.",
+    "Curated collection of premium timepieces. Where Swiss precision meets modern elegance. Browse our selection of Falcon Chronograph, Navigator GMT, Heritage Pilot, and Stealth Chrono.",
   keywords: [
     "premium watches",
     "aviation watches",
     "chronograph",
     "GMT watch",
     "luxury timepieces",
-    "Ruslan Aviation",
+    "Precision Timepieces",
     "men watches",
   ],
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Ruslan Aviation | Premium Timepieces",
+    title: "Precision Timepieces | Premium Timepieces",
     description:
-      "Curated collection of premium aviation-inspired timepieces. Where Swiss precision meets modern elegance.",
+      "Curated collection of premium timepieces. Where Swiss precision meets modern elegance.",
     type: "website",
     locale: "en_US",
-    siteName: "Ruslan Aviation",
+    siteName: "Precision Timepieces",
     url: siteUrl,
     images: [
       {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Ruslan Aviation Premium Timepieces",
+        alt: "Precision Timepieces Premium Timepieces",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ruslan Aviation | Premium Timepieces",
+    title: "Precision Timepieces | Premium Timepieces",
     description:
-      "Curated collection of premium aviation-inspired timepieces.",
+      "Curated collection of premium timepieces.",
     images: [`${siteUrl}/og-image.png`],
   },
   robots: {
@@ -92,19 +92,19 @@ export default function RootLayout({
               {
                 "@context": "https://schema.org",
                 "@type": "Organization",
-                name: "Ruslan Aviation",
+                name: "Precision Timepieces",
                 url: siteUrl,
                 description:
-                  "Premium aviation-inspired timepieces. Curated collection of luxury watches.",
+                  "Premium timepieces. Curated collection of luxury watches.",
                 sameAs: [
-                  "https://www.instagram.com/ruslan_helicopters",
+                  "https://www.instagram.com/precisiontimepieces",
                   "https://www.facebook.com/share/g/1Bgu7mx7YP",
                 ],
               },
               {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                name: "Ruslan Aviation",
+                name: "Precision Timepieces",
                 url: siteUrl,
                 potentialAction: {
                   "@type": "SearchAction",
@@ -173,7 +173,7 @@ export default function RootLayout({
                 description: "Aviation chronograph style with metal bracelet and deep blue-black dial.",
                 brand: {
                   "@type": "Brand",
-                  name: "Ruslan Aviation",
+                  name: "Precision Timepieces",
                 },
                 offers: {
                   "@type": "Offer",
@@ -189,7 +189,7 @@ export default function RootLayout({
                 description: "GMT function with dual-timezone display, luminous indices and robust steel bracelet.",
                 brand: {
                   "@type": "Brand",
-                  name: "Ruslan Aviation",
+                  name: "Precision Timepieces",
                 },
                 offers: {
                   "@type": "Offer",
@@ -205,7 +205,7 @@ export default function RootLayout({
                 description: "Pilot watch with clean white dial, bold numerals and premium leather strap.",
                 brand: {
                   "@type": "Brand",
-                  name: "Ruslan Aviation",
+                  name: "Precision Timepieces",
                 },
                 offers: {
                   "@type": "Offer",
@@ -221,7 +221,7 @@ export default function RootLayout({
                 description: "Matte black chronograph with green accent details and sporty functionality.",
                 brand: {
                   "@type": "Brand",
-                  name: "Ruslan Aviation",
+                  name: "Precision Timepieces",
                 },
                 offers: {
                   "@type": "Offer",

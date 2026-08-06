@@ -153,7 +153,7 @@ export default function OrderBanner() {
             WhatsApp
           </motion.a>
           <motion.a
-            href="https://www.instagram.com/ruslan_helicopters?igsh=YXo4bW1sYmx2bGVy"
+            href="https://www.instagram.com/precisiontimepieces"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -4, scale: 1.03 }}
