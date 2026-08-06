@@ -275,7 +275,7 @@ export default function Catalog() {
               className="absolute inset-0 flex items-center justify-center"
             >
               <div
-                className="relative w-[60vw] h-[60vw] sm:w-[50vw] sm:h-[50vw] lg:w-[45vw] lg:h-[45vw] max-w-[900px] max-h-[900px]"
+                className="relative w-[100vw] h-[100vw] sm:w-[50vw] sm:h-[50vw] lg:w-[45vw] lg:h-[45vw] max-w-[900px] max-h-[900px]"
                 style={{
                   WebkitMaskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 40%, transparent 72%)',
                   maskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 40%, transparent 72%)',
