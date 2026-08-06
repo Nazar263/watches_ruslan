@@ -361,16 +361,7 @@ export default function Catalog() {
               className="relative w-full max-w-4xl rounded-3xl overflow-y-auto max-h-[85vh] shadow-[0_25px_80px_rgba(0,0,0,0.4)]"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Green gradient border */}
-              <div className="absolute inset-0 rounded-3xl pointer-events-none z-30"
-                style={{
-                  border: '1.5px solid transparent',
-                  background: 'linear-gradient(135deg, rgba(0,96,57,0.6), rgba(9,122,74,0.3) 40%, transparent 60%, rgba(0,96,57,0.25)) border-box',
-                  WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
-                  WebkitMaskComposite: 'xor',
-                  maskComposite: 'exclude',
-                }}
-              />
+
 
               {/* Water orbs - behind everything */}
               <div className="absolute inset-0 pointer-events-none overflow-hidden">
