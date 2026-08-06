@@ -1,4 +1,9 @@
+# *
 User-agent: *
 Allow: /
 
+# Host
+Host: https://ruslanaviation.com
+
+# Sitemaps
 Sitemap: https://ruslanaviation.com/sitemap.xml

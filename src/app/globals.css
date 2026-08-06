@@ -210,3 +210,19 @@
 .water-orb-4 { animation: water-orb-4 30s ease-in-out infinite; }
 .water-shimmer-anim { animation: water-shimmer 5s ease-in-out infinite; }
 .water-caustic-anim { animation: water-caustic-move 15s ease-in-out infinite; }
+
+@media (max-width: 768px) {
+  .water-orb-1,
+  .water-orb-2,
+  .water-orb-3,
+  .water-orb-4,
+  .water-shimmer-anim,
+  .water-caustic-anim,
+  .animate-premium-float {
+    animation: none !important;
+  }
+
+  .modal-float {
+    animation: none !important;
+  }
+}

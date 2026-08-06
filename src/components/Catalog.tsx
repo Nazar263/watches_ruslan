@@ -10,6 +10,7 @@ interface Watch {
   tagline: string;
   image: string;
   image3d: string;
+  imageScale: number;
   description: string;
   bgColor: string;
   bgGradient: string;
@@ -43,6 +44,7 @@ const watches: Watch[] = [
     tagline: 'Precision in every detail',
     image: '/images/wach1.png',
     image3d: '/images/wach1-3d.png',
+    imageScale: 1,
     description: 'Aviation chronograph style with metal bracelet and deep blue-black dial.',
     bgColor: '#1a2a3a',
     bgGradient: 'linear-gradient(135deg, #1a2a3a 0%, #0f1e2e 40%, #162838 100%)',
@@ -74,6 +76,7 @@ const watches: Watch[] = [
     tagline: 'Two time zones, one bold statement',
     image: '/images/wach2.png',
     image3d: '/images/wach2-3d.png',
+    imageScale: 1,
     description: 'GMT function with dual-timezone display, luminous indices and robust steel bracelet.',
     bgColor: '#0a1830',
     bgGradient: 'linear-gradient(135deg, #0e2240 0%, #0a1830 50%, #061222 100%)',
@@ -105,6 +108,7 @@ const watches: Watch[] = [
     tagline: 'Classic aviation, redefined',
     image: '/images/wach3.png',
     image3d: '/images/wach3-3d.png',
+    imageScale: 1,
     description: 'Pilot watch with clean white dial, bold numerals and premium leather strap.',
     bgColor: '#b8c8d8',
     bgGradient: 'linear-gradient(135deg, #c0d0e0 0%, #b8c8d8 40%, #a8bcd0 100%)',
@@ -136,6 +140,7 @@ const watches: Watch[] = [
     tagline: 'Bold by design',
     image: '/images/wach4.png',
     image3d: '/images/wach4-3d.png',
+    imageScale: 1,
     description: 'Matte black chronograph with green accent details and sporty functionality.',
     bgColor: '#080e1a',
     bgGradient: 'linear-gradient(135deg, #0c1422 0%, #080e1a 50%, #050a14 100%)',
@@ -270,7 +275,7 @@ export default function Catalog() {
               className="absolute inset-0 flex items-center justify-center"
             >
               <div
-                className="relative w-[75vw] h-[75vw] sm:w-[60vw] sm:h-[60vw] max-w-[700px] max-h-[700px]"
+                className="relative w-[60vw] h-[60vw] sm:w-[50vw] sm:h-[50vw] lg:w-[45vw] lg:h-[45vw] max-w-[900px] max-h-[900px]"
                 style={{
                   WebkitMaskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 40%, transparent 72%)',
                   maskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 40%, transparent 72%)',
@@ -395,8 +400,9 @@ export default function Catalog() {
 
               <div className="relative grid md:grid-cols-2 gap-0 overflow-hidden w-full max-w-full">
                 {/* 3D Model Area */}
-                <div className="relative aspect-[4/3] sm:aspect-square flex items-center justify-center p-4 sm:p-0 overflow-hidden">
+                <div className="relative min-h-[280px] sm:aspect-square flex items-center justify-center p-4 sm:p-0 overflow-visible">
                   <motion.div
+                    className="modal-float"
                     animate={{ y: [0, -8, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: [0.25, 0.1, 0.25, 1] }}
                   >
@@ -414,7 +420,7 @@ export default function Catalog() {
                 </div>
 
                 {/* Info Panel */}
-                <div className="p-4 sm:p-8 flex flex-col justify-center bg-white/90 backdrop-blur-xl md:border-l border-t md:border-t-0 border-rolex-green/10 overflow-hidden">
+                <div className="p-4 sm:p-8 flex flex-col justify-center bg-white/90 backdrop-blur-xl md:border-l border-t md:border-t-0 border-border-light/50 overflow-hidden">
                   {/* Tagline */}
                   <motion.div
                     initial={{ opacity: 0, y: 15 }}

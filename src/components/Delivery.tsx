@@ -92,12 +92,12 @@ export default function Delivery() {
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 55, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-20 left-[12%] w-20 h-20 border border-rolex-green/5 rounded-full opacity-25"
+        className="absolute top-20 left-[12%] w-20 h-20 border border-rolex-green/5 rounded-full opacity-25 hidden md:block"
       />
       <motion.div
         animate={{ rotate: -360 }}
         transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
-        className="absolute bottom-16 right-[15%] w-14 h-14 border border-rolex-green/5 rounded-full opacity-20"
+        className="absolute bottom-16 right-[15%] w-14 h-14 border border-rolex-green/5 rounded-full opacity-20 hidden md:block"
       />
 
       {/* === CONTENT === */}

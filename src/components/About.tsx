@@ -141,12 +141,12 @@ export default function About() {
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-16 right-[15%] w-24 h-24 border border-rolex-green/5 rounded-full opacity-30"
+        className="absolute top-16 right-[15%] w-24 h-24 border border-rolex-green/5 rounded-full opacity-30 hidden md:block"
       />
       <motion.div
         animate={{ rotate: -360 }}
         transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
-        className="absolute bottom-20 left-[12%] w-16 h-16 border border-rolex-green/5 rounded-full opacity-20"
+        className="absolute bottom-20 left-[12%] w-16 h-16 border border-rolex-green/5 rounded-full opacity-20 hidden md:block"
       />
 
       {/* === CONTENT === */}

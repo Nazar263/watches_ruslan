@@ -141,12 +141,12 @@ export default function FAQ() {
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 58, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-16 right-[12%] w-20 h-20 border border-rolex-green/5 rounded-full opacity-25"
+        className="absolute top-16 right-[12%] w-20 h-20 border border-rolex-green/5 rounded-full opacity-25 hidden md:block"
       />
       <motion.div
         animate={{ rotate: -360 }}
         transition={{ duration: 48, repeat: Infinity, ease: 'linear' }}
-        className="absolute bottom-20 left-[10%] w-14 h-14 border border-rolex-green/5 rounded-full opacity-20"
+        className="absolute bottom-20 left-[10%] w-14 h-14 border border-rolex-green/5 rounded-full opacity-20 hidden md:block"
       />
 
       {/* === CONTENT === */}

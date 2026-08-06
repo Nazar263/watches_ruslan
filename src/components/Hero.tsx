@@ -97,12 +97,24 @@ function getIcon(name: string) {
   return icons[name] || null;
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+}
+
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
+  const isMobile = useIsMobile();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -134,6 +146,7 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
+    if (isMobile) return;
     const el = imageRef.current;
     el?.addEventListener('mousemove', handleMouseMove);
     el?.addEventListener('mouseleave', handleMouseLeave);
@@ -141,7 +154,7 @@ export default function Hero() {
       el?.removeEventListener('mousemove', handleMouseMove);
       el?.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [handleMouseMove, handleMouseLeave]);
+  }, [handleMouseMove, handleMouseLeave, isMobile]);
 
   const current = watches[activeIndex];
 
@@ -171,18 +184,22 @@ export default function Hero() {
       />
 
       {/* Animated orbs */}
-      <motion.div
-        animate={{ x: [0, 50, -40, 0], y: [0, -40, 30, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: [0.25, 0.1, 0.25, 1] }}
-        className="absolute top-1/3 left-[15%] w-[500px] h-[500px] rounded-full blur-3xl opacity-50"
-        style={{ background: 'radial-gradient(circle, rgba(0,96,57,0.12) 0%, transparent 70%)' }}
-      />
-      <motion.div
-        animate={{ x: [0, -35, 45, 0], y: [0, 35, -25, 0] }}
-        transition={{ duration: 25, repeat: Infinity, ease: [0.25, 0.1, 0.25, 1] }}
-        className="absolute bottom-1/4 right-[10%] w-[450px] h-[450px] rounded-full blur-3xl opacity-40"
-        style={{ background: 'radial-gradient(circle, rgba(0,96,57,0.09) 0%, transparent 70%)' }}
-      />
+      {!isMobile && (
+        <>
+          <motion.div
+            animate={{ x: [0, 50, -40, 0], y: [0, -40, 30, 0] }}
+            transition={{ duration: 20, repeat: Infinity, ease: [0.25, 0.1, 0.25, 1] }}
+            className="absolute top-1/3 left-[15%] w-[500px] h-[500px] rounded-full blur-3xl opacity-50"
+            style={{ background: 'radial-gradient(circle, rgba(0,96,57,0.12) 0%, transparent 70%)' }}
+          />
+          <motion.div
+            animate={{ x: [0, -35, 45, 0], y: [0, 35, -25, 0] }}
+            transition={{ duration: 25, repeat: Infinity, ease: [0.25, 0.1, 0.25, 1] }}
+            className="absolute bottom-1/4 right-[10%] w-[450px] h-[450px] rounded-full blur-3xl opacity-40"
+            style={{ background: 'radial-gradient(circle, rgba(0,96,57,0.09) 0%, transparent 70%)' }}
+          />
+        </>
+      )}
 
       {/* Subtle diagonal lines */}
       <div
@@ -314,14 +331,14 @@ export default function Hero() {
           {/* FLOAT WRAPPER */}
           <motion.div
             ref={imageRef}
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: [0.25, 0.1, 0.25, 1] }}
+            animate={isMobile ? {} : { y: [0, -10, 0] }}
+            transition={isMobile ? {} : { duration: 6, repeat: Infinity, ease: [0.25, 0.1, 0.25, 1] }}
             style={{ perspective: '1500px' }}
             className="relative"
           >
             {/* TILT INNER WRAPPER */}
             <motion.div
-              animate={{
+              animate={isMobile ? {} : {
                 rotateX: tilt.x,
                 rotateY: tilt.y,
                 rotateZ: isHovering ? tilt.y * 0.15 : 0,
