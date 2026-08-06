@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -168,8 +168,20 @@ const watches: Watch[] = [
   },
 ];
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+}
+
 export default function Catalog() {
   const [selectedWatch, setSelectedWatch] = useState<Watch | null>(null);
+  const isMobile = useIsMobile();
 
   return (
     <section id="catalog">
@@ -402,9 +414,8 @@ export default function Catalog() {
                 {/* 3D Model Area */}
                 <div className="relative min-h-[280px] sm:aspect-square flex items-center justify-center p-4 sm:p-0 overflow-visible">
                   <motion.div
-                    className="modal-float"
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: [0.25, 0.1, 0.25, 1] }}
+                    animate={isMobile ? {} : { y: [0, -8, 0] }}
+                    transition={isMobile ? {} : { duration: 5, repeat: Infinity, ease: [0.25, 0.1, 0.25, 1] }}
                   >
                     <Image
                       src={selectedWatch.image3d}
