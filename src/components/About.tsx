@@ -178,7 +178,7 @@ function BlueprintComposition({ parallaxY }: { parallaxY: MotionValue<number> })
 
         {/* SVG callouts with overflow visible */}
         <svg
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0 w-full h-full hidden sm:block"
           viewBox={`0 0 ${containerSize} ${containerSize}`}
           xmlns="http://www.w3.org/2000/svg"
           style={{ overflow: 'visible' }}
