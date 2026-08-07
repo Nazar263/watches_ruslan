@@ -26,7 +26,7 @@ export default function Hero() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover md:[filter:blur(15px)]"
+          className="absolute inset-0 w-full h-full object-cover md:[filter:blur(0px)]"
         >
           <source src="/videos/hero-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
           <source src="/videos/hero-desktop.mp4" type="video/mp4" />
