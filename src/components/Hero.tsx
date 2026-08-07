@@ -26,7 +26,7 @@ export default function Hero() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover md:[filter:blur(15px)]"
         >
           <source src="/videos/hero-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
           <source src="/videos/hero-desktop.mp4" type="video/mp4" />
@@ -48,7 +48,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <span className="inline-block text-[0.65rem] sm:text-[0.7rem] tracking-[0.4em] uppercase mb-6 sm:mb-8 border border-white/20 px-5 py-2 rounded-full text-white/70 font-medium backdrop-blur-sm bg-white/5">
-              Precision Heritage
+              Ruslan Aviation
           </span>
         </motion.div>
 
@@ -67,7 +67,7 @@ export default function Hero() {
                 textShadow: '0 2px 40px rgba(0,0,0,0.4)',
               }}
             >
-              Precision
+             Precision
             </span>
             <span
               className="block font-black"
@@ -80,7 +80,7 @@ export default function Hero() {
                 filter: 'drop-shadow(0 2px 15px rgba(0,0,0,0.3))',
               }}
             >
-              Timepieces
+Timepieces
             </span>
           </h1>
         </motion.div>

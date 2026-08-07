@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -14,10 +14,16 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = "https://precisiontimepieces.com";
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const siteUrl = "https://ruslanaviation.com";
 
 export const metadata: Metadata = {
-  title: "Precision Timepieces | Premium Timepieces",
+  title: "Ruslan Aviation | Premium Timepieces",
   description:
     "Curated collection of premium timepieces. Where Swiss precision meets modern elegance. Browse our selection of Falcon Chronograph, Navigator GMT, Heritage Pilot, and Stealth Chrono.",
   keywords: [
@@ -26,32 +32,32 @@ export const metadata: Metadata = {
     "chronograph",
     "GMT watch",
     "luxury timepieces",
-    "Precision Timepieces",
+    "Ruslan Aviation",
     "men watches",
   ],
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Precision Timepieces | Premium Timepieces",
+    title: "Ruslan Aviation | Premium Timepieces",
     description:
       "Curated collection of premium timepieces. Where Swiss precision meets modern elegance.",
     type: "website",
     locale: "en_US",
-    siteName: "Precision Timepieces",
+    siteName: "Ruslan Aviation",
     url: siteUrl,
     images: [
       {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Precision Timepieces Premium Timepieces",
+        alt: "Ruslan Aviation Premium Timepieces",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Precision Timepieces | Premium Timepieces",
+    title: "Ruslan Aviation | Premium Timepieces",
     description:
       "Curated collection of premium timepieces.",
     images: [`${siteUrl}/og-image.png`],
@@ -79,7 +85,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${inter.variable} ${montserrat.variable}`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
@@ -92,19 +98,19 @@ export default function RootLayout({
               {
                 "@context": "https://schema.org",
                 "@type": "Organization",
-                name: "Precision Timepieces",
+                name: "Ruslan Aviation",
                 url: siteUrl,
                 description:
                   "Premium timepieces. Curated collection of luxury watches.",
                 sameAs: [
-                  "https://www.instagram.com/precisiontimepieces",
+                  "https://www.instagram.com/ruslanaviation",
                   "https://www.facebook.com/share/g/1Bgu7mx7YP",
                 ],
               },
               {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                name: "Precision Timepieces",
+                name: "Ruslan Aviation",
                 url: siteUrl,
                 potentialAction: {
                   "@type": "SearchAction",
@@ -173,7 +179,7 @@ export default function RootLayout({
                 description: "Aviation chronograph style with metal bracelet and deep blue-black dial.",
                 brand: {
                   "@type": "Brand",
-                  name: "Precision Timepieces",
+                  name: "Ruslan Aviation",
                 },
                 offers: {
                   "@type": "Offer",
@@ -189,7 +195,7 @@ export default function RootLayout({
                 description: "GMT function with dual-timezone display, luminous indices and robust steel bracelet.",
                 brand: {
                   "@type": "Brand",
-                  name: "Precision Timepieces",
+                  name: "Ruslan Aviation",
                 },
                 offers: {
                   "@type": "Offer",
@@ -205,7 +211,7 @@ export default function RootLayout({
                 description: "Pilot watch with clean white dial, bold numerals and premium leather strap.",
                 brand: {
                   "@type": "Brand",
-                  name: "Precision Timepieces",
+                  name: "Ruslan Aviation",
                 },
                 offers: {
                   "@type": "Offer",
@@ -221,7 +227,7 @@ export default function RootLayout({
                 description: "Matte black chronograph with green accent details and sporty functionality.",
                 brand: {
                   "@type": "Brand",
-                  name: "Precision Timepieces",
+                  name: "Ruslan Aviation",
                 },
                 offers: {
                   "@type": "Offer",

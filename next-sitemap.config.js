@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 const config = {
-  siteUrl: "https://precisiontimepieces.com",
+  siteUrl: "https://ruslanaviation.com",
   generateRobotsTxt: true,
   sitemapSize: 7000,
   changefreq: "monthly",

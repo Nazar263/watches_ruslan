@@ -61,13 +61,13 @@ export default function Header() {
         <a href="#" className="flex items-center gap-3 group">
           <Image
             src="/images/logo-na-prozoromu-1.png"
-            alt="Precision Timepieces"
+            alt="Ruslan Aviation"
             width={40}
             height={40}
             className="object-contain transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-110"
           />
           <span className="font-heading text-lg tracking-wider text-charcoal">
-            PRECISION TIMEPIECES
+            RUSLAN AVIATION
           </span>
         </a>
 

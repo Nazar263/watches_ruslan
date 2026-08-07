@@ -15,8 +15,13 @@
   --color-text-secondary: #6B6B6B;
   --color-text-tertiary: #999999;
   --color-border-light: #E5E5E5;
+  --color-gold: #D4AF37;
+  --color-gold-hover: #C5A028;
+  --color-dark-bg: #0B0C10;
+  --color-dark-surface: #121212;
   --font-heading: var(--font-playfair);
   --font-body: var(--font-inter);
+  --font-montserrat: var(--font-montserrat);
 }
 
 [id] {
