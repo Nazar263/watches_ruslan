@@ -79,8 +79,8 @@ function CalloutLine({
 }) {
   const cx = containerSize / 2;
   const cy = containerSize / 2;
-  const offset = containerSize * 0.36;
-  const textOffset = containerSize * 0.10;
+  const offset = containerSize * 0.20;
+  const textOffset = containerSize * 0.02;
 
   let endX: number, endY: number, textX: number, textY: number, textAnchor: 'start' | 'end';
 
@@ -124,7 +124,7 @@ function CalloutLine({
         x={textX} y={textY}
         textAnchor={textAnchor}
         fill="#888888"
-        fontSize="11"
+        fontSize="10"
         fontFamily="Inter, sans-serif"
         className="transition-all duration-300 group-hover:fill-[#D4AF37]"
       >
@@ -178,7 +178,7 @@ function BlueprintComposition({ parallaxY }: { parallaxY: MotionValue<number> })
 
         {/* SVG callouts with overflow visible */}
         <svg
-          className="absolute inset-0 w-full h-full hidden sm:block"
+          className="absolute inset-0 w-full h-full"
           viewBox={`0 0 ${containerSize} ${containerSize}`}
           xmlns="http://www.w3.org/2000/svg"
           style={{ overflow: 'visible' }}
