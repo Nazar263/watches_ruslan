@@ -183,6 +183,15 @@ export default function Catalog() {
   const [selectedWatch, setSelectedWatch] = useState<Watch | null>(null);
   const isMobile = useIsMobile();
 
+  useEffect(() => {
+    if (selectedWatch) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [selectedWatch]);
+
   return (
     <section id="catalog">
       <div className="relative">
