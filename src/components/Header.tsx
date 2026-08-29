@@ -60,7 +60,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] bg-white/80 backdrop-blur-xl border-b ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] bg-white/80 backdrop-blur-xl border-b ${
         scrolled
           ? 'border-border-light py-3 shadow-[0_2px_24px_rgba(0,0,0,0.08)]'
           : 'border-transparent py-5'

@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 const deliveryItems = [
   {
@@ -19,6 +20,29 @@ const deliveryItems = [
     desc: 'Return window for unworn items in original condition with documentation.',
   },
 ];
+
+const cardVariants = {
+  hidden: (i: number) => ({
+    opacity: 0,
+    y: 80,
+    rotateX: 12,
+    scale: 0.85,
+    filter: 'blur(8px)',
+  }),
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 1.4,
+      delay: 0.15 + i * 0.18,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+      filter: { duration: 1.0, delay: 0.15 + i * 0.18 },
+    },
+  }),
+};
 
 function DeliveryIcon({ name }: { name: string }) {
   const cls = 'w-7 h-7';
@@ -103,63 +127,74 @@ export default function Delivery() {
       {/* === CONTENT === */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16" style={{ perspective: '1000px' }}>
           <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 48 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="h-px bg-rolex-green/50 mx-auto mb-6"
-          />
-          <motion.span
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-rolex-green text-xs tracking-[0.4em] uppercase font-medium block mb-6"
+            initial={{ opacity: 0, y: 60, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            Shipping & Payment
-          </motion.span>
-          <h2 className="font-heading font-bold" style={{ fontSize: 'clamp(2.8rem, 5.5vw, 4.5rem)', lineHeight: 1.02, letterSpacing: '-0.02em' }}>
-            <motion.span
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: 48 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="text-text-primary"
-            >
-              Express{' '}
-            </motion.span>
+              transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              className="h-px bg-rolex-green/50 mx-auto mb-6"
+            />
             <motion.span
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, letterSpacing: '0.8em' }}
+              whileInView={{ opacity: 1, y: 0, letterSpacing: '0.4em' }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="text-gradient relative inline-block group cursor-default"
+              transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="text-rolex-green text-xs uppercase font-medium block mb-6"
             >
-              Delivery
-              <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-gradient-to-r from-rolex-green to-rolex-green-light rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+              Shipping & Payment
             </motion.span>
-          </h2>
-        </motion.div>
+            <h2 className="font-heading font-bold" style={{ fontSize: 'clamp(2.8rem, 5.5vw, 4.5rem)', lineHeight: 1.02, letterSpacing: '-0.02em' }}>
+              <motion.span
+                initial={{ opacity: 0, y: 40, rotateX: -15 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.0, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="text-text-primary inline-block"
+                style={{ transformOrigin: 'bottom center' }}
+              >
+                Express{' '}
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 40, rotateX: -15 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.0, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="text-gradient relative inline-block group cursor-default"
+                style={{ transformOrigin: 'bottom center' }}
+              >
+                Delivery
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute -bottom-2 left-0 w-full h-[3px] bg-gradient-to-r from-rolex-green to-rolex-green-light rounded-full origin-left"
+                />
+              </motion.span>
+            </h2>
+          </motion.div>
+        </div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid md:grid-cols-3 gap-6 sm:gap-8" style={{ perspective: '1200px' }}>
           {deliveryItems.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 60, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.9, delay: 0.15 * i, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] } }}
-              className="relative group text-center p-8 sm:p-10 rounded-2xl backdrop-blur-xl bg-white/50 border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_60px_rgba(0,96,57,0.12)] hover:border-rolex-green/25 transition-all duration-500"
+              custom={i}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              whileHover={{ y: -12, rotateX: -3, scale: 1.02, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }}
+              className="relative group text-center p-8 sm:p-10 rounded-2xl backdrop-blur-xl bg-white/50 border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_60px_rgba(0,96,57,0.12)] hover:border-rolex-green/25 transition-shadow duration-500"
+              style={{ transformStyle: 'preserve-3d' }}
             >
               {/* Gradient border on hover */}
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -181,29 +216,44 @@ export default function Delivery() {
 
               {/* Icon */}
               <motion.div
+                initial={{ scale: 0, rotate: -15 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.5 + i * 0.18, type: 'spring', stiffness: 180, damping: 12 }}
                 whileHover={{ rotate: 8, scale: 1.1 }}
-                transition={{ duration: 0.3, type: 'spring', stiffness: 300 }}
                 className="w-16 h-16 rounded-2xl bg-rolex-green/8 flex items-center justify-center mx-auto mb-6 text-rolex-green group-hover:bg-rolex-green/15 transition-colors duration-500"
               >
                 <DeliveryIcon name={item.icon} />
               </motion.div>
 
-              <h3 className="font-heading text-xl font-semibold text-text-primary mb-3">
+              <motion.h3
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.6 + i * 0.18, ease: [0.16, 1, 0.3, 1] }}
+                className="font-heading text-xl font-semibold text-text-primary mb-3"
+              >
                 {item.title}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed max-w-[280px] mx-auto">
+              </motion.h3>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.7 + i * 0.18, ease: [0.16, 1, 0.3, 1] }}
+                className="text-text-secondary text-sm leading-relaxed max-w-[280px] mx-auto"
+              >
                 {item.desc}
-              </p>
+              </motion.p>
             </motion.div>
           ))}
         </div>
 
         {/* Bottom note */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="mt-14 text-center"
         >
           <p className="text-text-tertiary text-sm tracking-wide">

@@ -1,10 +1,19 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      const isMobile = window.innerWidth < 768;
+      videoRef.current.src = isMobile ? '/videos/hero-mobile.mp4' : '/videos/hero-desktop.mp4';
+      videoRef.current.load();
+    }
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -13,6 +22,7 @@ export default function Hero() {
 
   const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 50]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
 
   return (
     <section
@@ -20,18 +30,21 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center"
     >
       {/* === FULLSCREEN VIDEO BACKGROUND === */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
+      <motion.div
+        style={{ scale }}
+        className="absolute inset-0 w-full h-full overflow-hidden"
+      >
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover md:[filter:blur(0px)]"
-        >
-          <source src="/videos/hero-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
-          <source src="/videos/hero-desktop.mp4" type="video/mp4" />
-        </video>
-      </div>
+          className="absolute inset-0 w-full h-full object-cover"
+          preload="auto"
+          src="/videos/hero-desktop.mp4"
+        />
+      </motion.div>
 
       {/* === DARK OVERLAY === */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
@@ -43,20 +56,20 @@ export default function Hero() {
       >
         {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="inline-block text-[0.65rem] sm:text-[0.7rem] tracking-[0.4em] uppercase mb-6 sm:mb-8 border border-white/20 px-5 py-2 rounded-full text-white/70 font-medium backdrop-blur-sm bg-white/5">
-          premium  watches
+            premium watches
           </span>
         </motion.div>
 
         {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
           <h1 className="font-heading leading-[1.2] mb-5 sm:mb-6">
             <span
@@ -67,7 +80,7 @@ export default function Hero() {
                 textShadow: '0 2px 40px rgba(0,0,0,0.4)',
               }}
             >
-      Ruslan Aviation
+              Ruslan Aviation
             </span>
             <span
               className="block font-black"
@@ -80,16 +93,16 @@ export default function Hero() {
                 filter: 'drop-shadow(0 2px 15px rgba(0,0,0,0.3))',
               }}
             >
-     Watches
+              Watches
             </span>
           </h1>
         </motion.div>
 
         {/* Tagline */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-white/65 max-w-md mx-auto leading-relaxed mb-8 sm:mb-10"
           style={{
             fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
@@ -101,15 +114,14 @@ export default function Hero() {
 
         {/* CTA Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 1, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-         
           <a
             href="#catalog"
-            className="inline-flex items-center justify-center gap-2 border border-white/20 px-8 py-3.5 rounded-full text-sm font-medium tracking-wider text-white/70 backdrop-blur-sm bg-white/5 transition-all duration-400 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:bg-white/10 hover:border-white/35 hover:text-white active:scale-95"
+            className="inline-flex items-center justify-center gap-2 border border-white/20 px-8 py-3.5 rounded-full text-sm font-medium tracking-wider text-white/70 backdrop-blur-sm bg-white/5 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-white/10 hover:border-white/35 hover:text-white hover:scale-105 active:scale-95"
           >
             Explore Collection
           </a>
@@ -117,11 +129,16 @@ export default function Hero() {
       </motion.div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce z-10">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.5 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce z-10"
+      >
         <svg className="w-5 h-5 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
-      </div>
+      </motion.div>
     </section>
   );
 }

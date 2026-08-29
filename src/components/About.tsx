@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence, MotionValue } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence, MotionValue, useInView } from 'framer-motion';
 
 const features = [
   {
@@ -351,6 +351,59 @@ function StatIcon({ name }: { name: string }) {
   );
 }
 
+function AnimatedCounter({ value, suffix = '' }: { value: string; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const numericValue = parseInt(value.replace(/[^0-9]/g, ''), 10);
+  const hasComma = value.includes(',');
+  const hasPlus = value.includes('+');
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    let start = 0;
+    const duration = 1800;
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      setCount(Math.floor(eased * numericValue));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [isInView, numericValue]);
+
+  const formatted = hasComma ? count.toLocaleString() : String(count);
+  return (
+    <span ref={ref}>
+      {formatted}{hasPlus ? '+' : ''}{suffix}
+    </span>
+  );
+}
+
+const statCardVariants = {
+  hidden: (i: number) => ({
+    opacity: 0,
+    y: 60,
+    rotateX: 10,
+    scale: 0.88,
+    filter: 'blur(8px)',
+  }),
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 1.3,
+      delay: 0.1 + i * 0.2,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+      filter: { duration: 0.9, delay: 0.1 + i * 0.2 },
+    },
+  }),
+};
+
 export default function About() {
   const [modalOpen, setModalOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -381,10 +434,10 @@ export default function About() {
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-[60px] items-start">
             {/* LEFT: Text block */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="w-full lg:w-[55%]"
             >
               {/* Eyebrow */}
@@ -418,10 +471,10 @@ export default function About() {
                 {['Precision.', 'Innovation.', 'Built', 'for', 'the', 'Future.'].map((word, i) => (
                   <motion.span
                     key={i}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 25 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                     className="inline-block mr-[0.3em]"
                   >
                     {word}
@@ -431,10 +484,10 @@ export default function About() {
 
               {/* Paragraphs with stagger */}
               <motion.p
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.3 }}
+                transition={{ duration: 0.9, delay: 0.4 }}
                 style={{ color: '#4A4A4A', fontSize: '16px', lineHeight: 1.8, marginBottom: '16px' }}
               >
                 At Ruslan Aviation Watches, every timepiece is designed with precision
@@ -445,10 +498,10 @@ export default function About() {
               </motion.p>
 
               <motion.p
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.45 }}
+                transition={{ duration: 0.9, delay: 0.55 }}
                 style={{ color: '#4A4A4A', fontSize: '16px', lineHeight: 1.8, marginBottom: '32px' }}
               >
                 Every watch undergoes rigorous quality inspection and performance testing
@@ -460,10 +513,10 @@ export default function About() {
                 {features.map((f, i) => (
                   <motion.div
                     key={f.title}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 25 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.5 + 0.1 * i }}
+                    transition={{ duration: 0.7, delay: 0.55 + 0.12 * i, ease: [0.16, 1, 0.3, 1] }}
                     whileHover={{ x: 4 }}
                     className="border-l-[3px] border-rolex-green relative group"
                     style={{ padding: '16px 0 16px 16px' }}
@@ -485,10 +538,10 @@ export default function About() {
 
             {/* RIGHT: Blueprint composition */}
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.8, delay: 0.1 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.2, delay: 0.15 }}
               className="w-full lg:w-[45%] flex items-center justify-center"
             >
               <BlueprintComposition parallaxY={parallaxY} />
@@ -498,17 +551,19 @@ export default function About() {
           {/* Statistics — full width */}
           <div
             className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-[900px] mx-auto"
-            style={{ marginTop: '16px', marginBottom: '32px' }}
+            style={{ marginTop: '16px', marginBottom: '32px', perspective: '1000px' }}
           >
             {stats.map((s, i) => (
               <motion.div
                 key={s.label}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.15 * i, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -4, transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] } }}
-                className="relative group text-center p-6 rounded-2xl backdrop-blur-xl bg-white/50 border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_60px_rgba(0,96,57,0.12)] hover:border-rolex-green/25 transition-all duration-500"
+                custom={i}
+                variants={statCardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                whileHover={{ y: -8, rotateX: -3, scale: 1.03, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }}
+                className="relative group text-center p-6 rounded-2xl backdrop-blur-xl bg-white/50 border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_60px_rgba(0,96,57,0.12)] hover:border-rolex-green/25 transition-shadow duration-500"
+                style={{ transformStyle: 'preserve-3d' }}
               >
                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{
@@ -525,25 +580,35 @@ export default function About() {
                   }}
                 />
                 <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
+                  initial={{ scale: 0, rotate: -20 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 + 0.1 * i, type: 'spring', stiffness: 200 }}
+                  transition={{ duration: 0.8, delay: 0.4 + i * 0.2, type: 'spring', stiffness: 150, damping: 10 }}
                   className="w-12 h-12 mx-auto mb-4 rounded-xl bg-rolex-green/8 flex items-center justify-center group-hover:bg-rolex-green/15 transition-colors duration-500"
                 >
                   <div className="text-rolex-green">
                     <StatIcon name={s.icon} />
                   </div>
                 </motion.div>
-                <p
+                <motion.p
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.5 + i * 0.2, type: 'spring', stiffness: 120 }}
                   className="font-heading font-bold text-rolex-green mb-1"
                   style={{ fontSize: 'clamp(28px, 3.5vw, 42px)', lineHeight: 1.2 }}
                 >
-                  {s.value}
-                </p>
-                <p style={{ color: '#6B6B6B', fontFamily: 'Inter, sans-serif', fontSize: '11px', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                  <AnimatedCounter value={s.value} />
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: 0.65 + i * 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ color: '#6B6B6B', fontFamily: 'Inter, sans-serif', fontSize: '11px', letterSpacing: '1px', textTransform: 'uppercase' }}
+                >
                   {s.label}
-                </p>
+                </motion.p>
               </motion.div>
             ))}
           </div>
