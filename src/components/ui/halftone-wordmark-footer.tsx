@@ -172,10 +172,10 @@ const HWF_CSS = `
 .hwf-brand strong { display: block; font-weight: 500; }
 .hwf-brand > span { display: block; opacity: .62; margin-top: 3px; }
 .hwf-legal {
-  position: absolute; z-index: 2; left: clamp(20px, 3.4vw, 44px); right: clamp(20px, 3.4vw, 44px); bottom: 0;
+  position: relative; z-index: 2; margin: 0 clamp(20px, 3.4vw, 44px);
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   min-height: 42px; padding: 11px 0 13px; border-top: 0.5px solid color-mix(in srgb, var(--hwf-ink) 18%, transparent);
-  background: linear-gradient(to top, var(--hwf-bg) 0%, color-mix(in srgb, var(--hwf-bg) 90%, transparent) 100%);
+  background: transparent;
   font-family: var(--hwf-mono); font-size: 9px; letter-spacing: .09em; line-height: 1.5;
 }
 .hwf-legal a { color: inherit; text-decoration: none; opacity: .8; transition: opacity .2s ease; }

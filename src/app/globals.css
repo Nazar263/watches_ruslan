@@ -44,7 +44,6 @@
       radial-gradient(ellipse at 8% 18%, rgba(0, 96, 57, 0.035) 0%, transparent 34%),
       radial-gradient(ellipse at 92% 58%, rgba(212, 175, 55, 0.025) 0%, transparent 32%),
       linear-gradient(180deg, #F8F7F3 0%, #F3F3EE 52%, #F7F6F2 100%);
-    background-attachment: fixed;
     color: #1A1A1A;
     font-family: var(--font-body), sans-serif;
     overflow-x: hidden;
@@ -228,6 +227,15 @@
 .water-shimmer-anim { animation: water-shimmer 5s ease-in-out infinite; }
 .water-caustic-anim { animation: water-caustic-move 15s ease-in-out infinite; }
 
+.catalog-panel:not([data-active="true"]) .water-orb-1,
+.catalog-panel:not([data-active="true"]) .water-orb-2,
+.catalog-panel:not([data-active="true"]) .water-orb-3,
+.catalog-panel:not([data-active="true"]) .water-orb-4,
+.catalog-panel:not([data-active="true"]) .water-shimmer-anim,
+.catalog-panel:not([data-active="true"]) .water-caustic-anim {
+  animation-play-state: paused;
+}
+
 @media (max-width: 768px) {
   .water-orb-1,
   .water-orb-2,
@@ -241,5 +249,12 @@
 
   .modal-float {
     animation: none !important;
+  }
+
+  .catalog-panel .water-orb-1,
+  .catalog-panel .water-orb-2,
+  .catalog-panel .water-orb-3,
+  .catalog-panel .water-orb-4 {
+    filter: blur(28px) !important;
   }
 }

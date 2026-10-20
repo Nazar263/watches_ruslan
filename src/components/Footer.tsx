@@ -52,7 +52,7 @@ export default function Footer() {
         radius={72}
         grain={0.28}
         crop={0.22}
-        mobileWordmarkLift={56}
+        mobileWordmarkLift={0}
         height="clamp(500px, 46vw, 600px)"
         legal={
           <>

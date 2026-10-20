@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -182,6 +182,26 @@ function useIsMobile() {
 export default function Catalog() {
   const [selectedWatch, setSelectedWatch] = useState<Watch | null>(null);
   const isMobile = useIsMobile();
+  const catalogRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const panels = catalogRef.current?.querySelectorAll<HTMLElement>('.catalog-panel');
+    if (!panels?.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      panels.forEach((panel) => panel.setAttribute('data-active', 'true'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(({ isIntersecting, target }) => {
+        target.setAttribute('data-active', String(isIntersecting));
+      });
+    }, { rootMargin: '-10% 0px -10% 0px', threshold: 0.01 });
+
+    panels.forEach((panel) => observer.observe(panel));
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (selectedWatch) {
@@ -193,12 +213,12 @@ export default function Catalog() {
   }, [selectedWatch]);
 
   return (
-    <section id="catalog">
+    <section id="catalog" ref={catalogRef}>
       <div className="relative">
         {watches.map((watch, i) => (
           <div
             key={watch.id}
-            className="relative h-screen w-full overflow-hidden"
+            className="catalog-panel relative h-screen w-full overflow-hidden"
           >
             {/* Layer 1: Base gradient */}
             <div
