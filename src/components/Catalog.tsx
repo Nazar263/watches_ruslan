@@ -9,7 +9,7 @@ interface Watch {
   name: string;
   tagline: string;
   image: string;
-  image3d: string;
+  video3d: string;
   imageScale: number;
   description: string;
   bgColor: string;
@@ -39,43 +39,11 @@ interface Watch {
 
 const watches: Watch[] = [
   {
-    id: 1,
-    name: 'Falcon Chronograph',
-    tagline: 'Precision in every detail',
-    image: '/images/wach1.png',
-    image3d: '/images/wach1-3d.png',
-    imageScale: 1,
-    description: 'Aviation chronograph style with metal bracelet and deep blue-black dial.',
-    bgColor: '#1a2a3a',
-    bgGradient: 'linear-gradient(135deg, #1a2a3a 0%, #0f1e2e 40%, #162838 100%)',
-    glowColor: 'rgba(195, 175, 130, 0.25)',
-    shadowColor: 'rgba(0,0,0,0.3)',
-    textColor: 'text-white',
-    headingGradient: 'linear-gradient(135deg, #ffffff 0%, #b4a87a 100%)',
-    taglineColor: 'text-amber-200/80',
-    discoverColor: 'text-white/90 hover:text-white',
-    causticColor1: 'rgba(180,200,220,0.4)',
-    causticColor2: 'rgba(120,160,200,0.3)',
-    causticColor3: 'rgba(200,210,230,0.25)',
-    flowColor1: 'rgba(255,255,255,0.15)',
-    flowColor2: 'rgba(160,190,220,0.12)',
-    flowColor3: 'rgba(255,255,255,0.08)',
-    lightSweepColor: 'rgba(255,255,255,0.08)',
-    specs: {
-      movement: 'Quartz (High Precision)',
-      case: 'Stainless Steel 316L',
-      glass: 'Hardened Mineral',
-      waterResistance: '3 ATM (30m)',
-      diameter: '42mm',
-      functions: 'Chronograph, Date Display',
-    },
-  },
-  {
     id: 2,
     name: 'Navigator GMT',
     tagline: 'Two time zones, one bold statement',
     image: '/images/wach2.png',
-    image3d: '/images/wach2-3d.png',
+    video3d: '/videos/wach1-3d.mp4',
     imageScale: 1,
     description: 'GMT function with dual-timezone display, luminous indices and robust steel bracelet.',
     bgColor: '#0a1830',
@@ -103,35 +71,35 @@ const watches: Watch[] = [
     },
   },
   {
-    id: 3,
-    name: 'Heritage Pilot',
-    tagline: 'Classic aviation, redefined',
-    image: '/images/wach3.png',
-    image3d: '/images/wach3-3d.png',
+    id: 1,
+    name: 'Falcon Chronograph',
+    tagline: 'Precision in every detail',
+    image: '/images/wach1.png',
+    video3d: '/videos/wach2-3d.mp4',
     imageScale: 1,
-    description: 'Pilot watch with clean white dial, bold numerals and premium leather strap.',
-    bgColor: '#b8c8d8',
-    bgGradient: 'linear-gradient(135deg, #c0d0e0 0%, #b8c8d8 40%, #a8bcd0 100%)',
-    glowColor: 'rgba(25, 70, 180, 0.2)',
-    shadowColor: 'rgba(0,0,0,0.15)',
-    textColor: 'text-gray-800',
-    headingGradient: 'linear-gradient(135deg, #1a3050 0%, #2a5580 50%, #1a3050 100%)',
-    taglineColor: 'text-gray-900/80',
-    discoverColor: 'text-gray-900 hover:text-black',
-    causticColor1: 'rgba(100,160,220,0.4)',
-    causticColor2: 'rgba(180,210,240,0.35)',
-    causticColor3: 'rgba(140,190,230,0.3)',
-    flowColor1: 'rgba(200,225,250,0.2)',
-    flowColor2: 'rgba(120,175,235,0.15)',
-    flowColor3: 'rgba(220,235,255,0.1)',
-    lightSweepColor: 'rgba(255,255,255,0.15)',
+    description: 'Aviation chronograph style with metal bracelet and deep blue-black dial.',
+    bgColor: '#1a2a3a',
+    bgGradient: 'linear-gradient(135deg, #1a2a3a 0%, #0f1e2e 40%, #162838 100%)',
+    glowColor: 'rgba(195, 175, 130, 0.25)',
+    shadowColor: 'rgba(0,0,0,0.3)',
+    textColor: 'text-white',
+    headingGradient: 'linear-gradient(135deg, #ffffff 0%, #b4a87a 100%)',
+    taglineColor: 'text-amber-200/80',
+    discoverColor: 'text-white/90 hover:text-white',
+    causticColor1: 'rgba(180,200,220,0.4)',
+    causticColor2: 'rgba(120,160,200,0.3)',
+    causticColor3: 'rgba(200,210,230,0.25)',
+    flowColor1: 'rgba(255,255,255,0.15)',
+    flowColor2: 'rgba(160,190,220,0.12)',
+    flowColor3: 'rgba(255,255,255,0.08)',
+    lightSweepColor: 'rgba(255,255,255,0.08)',
     specs: {
       movement: 'Quartz (High Precision)',
       case: 'Stainless Steel 316L',
       glass: 'Hardened Mineral',
       waterResistance: '3 ATM (30m)',
-      diameter: '44mm',
-      functions: 'Analog Display, Date',
+      diameter: '42mm',
+      functions: 'Chronograph, Date Display',
     },
   },
   {
@@ -139,7 +107,7 @@ const watches: Watch[] = [
     name: 'Stealth Chrono',
     tagline: 'Bold by design',
     image: '/images/wach4.png',
-    image3d: '/images/wach4-3d.png',
+    video3d: '/videos/wach3-3d.mp4',
     imageScale: 1,
     description: 'Matte black chronograph with green accent details and sporty functionality.',
     bgColor: '#080e1a',
@@ -164,6 +132,38 @@ const watches: Watch[] = [
       waterResistance: '5 ATM (50m)',
       diameter: '43mm',
       functions: 'Chronograph, Tachymeter, Date',
+    },
+  },
+  {
+    id: 3,
+    name: 'Heritage Pilot',
+    tagline: 'Classic aviation, redefined',
+    image: '/images/wach3.png',
+    video3d: '/videos/wach4-3d.mp4',
+    imageScale: 1,
+    description: 'Pilot watch with clean white dial, bold numerals and premium leather strap.',
+    bgColor: '#b8c8d8',
+    bgGradient: 'linear-gradient(135deg, #c0d0e0 0%, #b8c8d8 40%, #a8bcd0 100%)',
+    glowColor: 'rgba(25, 70, 180, 0.2)',
+    shadowColor: 'rgba(0,0,0,0.15)',
+    textColor: 'text-gray-800',
+    headingGradient: 'linear-gradient(135deg, #1a3050 0%, #2a5580 50%, #1a3050 100%)',
+    taglineColor: 'text-gray-900/80',
+    discoverColor: 'text-gray-900 hover:text-black',
+    causticColor1: 'rgba(100,160,220,0.4)',
+    causticColor2: 'rgba(180,210,240,0.35)',
+    causticColor3: 'rgba(140,190,230,0.3)',
+    flowColor1: 'rgba(200,225,250,0.2)',
+    flowColor2: 'rgba(120,175,235,0.15)',
+    flowColor3: 'rgba(220,235,255,0.1)',
+    lightSweepColor: 'rgba(255,255,255,0.15)',
+    specs: {
+      movement: 'Quartz (High Precision)',
+      case: 'Stainless Steel 316L',
+      glass: 'Hardened Mineral',
+      waterResistance: '3 ATM (30m)',
+      diameter: '44mm',
+      functions: 'Analog Display, Date',
     },
   },
 ];
@@ -307,7 +307,7 @@ export default function Catalog() {
                   alt={watch.name}
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 90vw, 60vw"
+                  sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, (max-width: 1999px) 45vw, 900px"
                 />
               </div>
             </motion.div>
@@ -421,19 +421,28 @@ export default function Catalog() {
 
               <div className="relative grid md:grid-cols-2 gap-0 overflow-hidden w-full max-w-full">
                 {/* 3D Model Area */}
-                <div className="relative min-h-[280px] sm:aspect-square flex items-center justify-center p-4 sm:p-0 overflow-visible">
+                <div
+                  className="relative min-h-[280px] h-full flex items-center justify-center p-4 sm:p-0 overflow-hidden"
+                  style={{
+                    background: '#000',
+                  }}
+                >
                   <motion.div
                     animate={isMobile ? {} : { y: [0, -8, 0] }}
                     transition={isMobile ? {} : { duration: 5, repeat: Infinity, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="relative"
                   >
-                    <Image
-                      src={selectedWatch.image3d}
-                      alt={selectedWatch.name}
-                      width={250}
-                      height={250}
-                      className="object-contain translate-y-4 sm:translate-y-8"
+                    <video
+                      src={selectedWatch.video3d}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label={selectedWatch.name}
+                      className="w-[250px] h-[250px] object-contain translate-y-4 sm:translate-y-8"
                       style={{
-                        filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.4)) drop-shadow(0 10px 20px rgba(0,0,0,0.3))',
+                        background: 'transparent',
                       }}
                     />
                   </motion.div>

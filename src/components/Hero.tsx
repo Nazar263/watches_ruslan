@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Hero() {
@@ -8,11 +8,32 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (videoRef.current) {
-      const isMobile = window.innerWidth < 768;
-      videoRef.current.src = isMobile ? '/videos/hero-mobile.mp4' : '/videos/hero-desktop.mp4';
-      videoRef.current.load();
-    }
+    const video = videoRef.current;
+    if (!video) return;
+
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduceMotion.matches || connection?.saveData) return;
+
+    const mobileQuery = window.matchMedia('(max-width: 767px)');
+    const updateVideoSource = () => {
+      const source = mobileQuery.matches
+        ? '/videos/hero-mobile.mp4'
+        : '/videos/hero-desktop.mp4';
+
+      if (video.getAttribute('src') !== source) {
+        video.src = source;
+        video.load();
+        void video.play().catch(() => {});
+      }
+    };
+
+    const startTimer = window.setTimeout(updateVideoSource, 900);
+    mobileQuery.addEventListener('change', updateVideoSource);
+    return () => {
+      window.clearTimeout(startTimer);
+      mobileQuery.removeEventListener('change', updateVideoSource);
+    };
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -36,14 +57,15 @@ export default function Hero() {
       >
         <video
           ref={videoRef}
-          autoPlay
           muted
           loop
           playsInline
+          poster="/images/hero-poster.jpg"
           className="absolute inset-0 w-full h-full object-cover"
-          preload="auto"
-          src="/videos/hero-desktop.mp4"
-        />
+          preload="none"
+        >
+          Your browser does not support the video tag.
+        </video>
       </motion.div>
 
       {/* === DARK OVERLAY === */}

@@ -67,9 +67,7 @@ export default function Delivery() {
   return (
     <section id="delivery" className="relative py-28 sm:py-32 overflow-hidden">
       {/* === BACKGROUND === */}
-      <div className="absolute inset-0" style={{
-        background: 'linear-gradient(135deg, #f0f2f5 0%, #e6eaf0 25%, #dfe5ed 50%, #e8ecf1 75%, #f0f2f5 100%)',
-      }} />
+      <div className="site-paper-atmosphere absolute inset-0" />
 
       {/* Animated orbs */}
       <motion.div
