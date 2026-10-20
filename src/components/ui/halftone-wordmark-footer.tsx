@@ -233,7 +233,7 @@ export default function HalftoneWordmarkFooter({
   className = "",
 }: HalftoneWordmarkFooterProps) {
   const colors = { ...(PRESETS[preset] || PRESETS.night), ...(palette || {}) }
-  const rootRef = React.useRef(null as HTMLElement | null)
+  const rootRef = React.useRef<HTMLDivElement>(null)
   const canvasRef = React.useRef(null as HTMLCanvasElement | null)
   const opts = React.useRef({ colors, dotGap, radius, crop, mobileWordmarkLift, grain, interactive, fontFamily, fontWeight, wordmark })
   opts.current = { colors, dotGap, radius, crop, mobileWordmarkLift, grain, interactive, fontFamily, fontWeight, wordmark }
